@@ -258,19 +258,6 @@ async function getInitConfig(configFile: string, subConfig: {
       from: 'config',
       disabled: false,
     });
-  });
-
-
-
-  // 从配置文件中补充自定义分类信息
-  cfgFile.custom_category?.forEach((category) => {
-    adminConfig.CustomCategories.push({
-      name: category.name || category.query,
-      type: category.type,
-      query: category.query,
-      from: 'config',
-      disabled: false,
-    });
     // 批量追加自定义内置影视源 - 永久生效，不被配置文件覆盖
 adminConfig.SourceConfig.push(
   { key: "ffzy5", name: "非凡资源", api: "http://ffzy5.tv/api.php/provide/vod", detail: "", from: "custom", disabled: false, is_adult: false },
@@ -312,6 +299,20 @@ adminConfig.SourceConfig.push(
   { key: "1080zyku_json", name: "1080JSON", api: "https://api.1080zyku.com/inc/apijson.php", detail: "", from: "custom", disabled: false, is_adult: false },
   { key: "lziapi_http", name: "乐子HTTP", api: "http://cj.lziapi.com/api.php/provide/vod", detail: "", from: "custom", disabled: false, is_adult: false }
 );
+  });
+
+
+
+  // 从配置文件中补充自定义分类信息
+  cfgFile.custom_category?.forEach((category) => {
+    adminConfig.CustomCategories.push({
+      name: category.name || category.query,
+      type: category.type,
+      query: category.query,
+      from: 'config',
+      disabled: false,
+    });
+    
   });
 
   // 从配置文件中补充直播源信息
